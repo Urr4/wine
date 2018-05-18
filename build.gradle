@@ -15,5 +15,5 @@ repositories {
 }
 
 dependencies {
-    compile group: 'org.neo4j', name: 'neo4j-ogm-core', version: '3.0.2'
+    compile group: 'org.neo4j', name: 'neo4j-ogm-core', version: '3.+'
 }
