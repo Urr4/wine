@@ -1,5 +1,6 @@
 package de.urr4.wine.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.neo4j.ogm.annotation.*;
 
 @RelationshipEntity(type = "WITH")
@@ -13,6 +14,7 @@ public class OrderedWine {
     private int amountOfWine;
 
     @StartNode
+    @JsonIgnore
     private Order order;
 
     @EndNode

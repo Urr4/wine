@@ -2,6 +2,7 @@ package de.urr4.wine.entities;
 
 import org.neo4j.ogm.annotation.*;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 @NodeEntity(label = "Order")
@@ -22,6 +23,12 @@ public class Order {
 
     @Relationship(type = "WITH")
     private Set<OrderedWine> wines;
+
+    @Property(name = "receivedOn")
+    private LocalDate receivedOn;
+
+    @Property(name = "payedOn")
+    private LocalDate payedOn;
 
     public Long getId() {
         return id;
@@ -61,5 +68,21 @@ public class Order {
 
     public void setWines(Set<OrderedWine> wines) {
         this.wines = wines;
+    }
+
+    public LocalDate getReceivedOn() {
+        return receivedOn;
+    }
+
+    public void setReceivedOn(LocalDate receivedOn) {
+        this.receivedOn = receivedOn;
+    }
+
+    public LocalDate getPayedOn() {
+        return payedOn;
+    }
+
+    public void setPayedOn(LocalDate payedOn) {
+        this.payedOn = payedOn;
     }
 }
