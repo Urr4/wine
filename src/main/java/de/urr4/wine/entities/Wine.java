@@ -206,4 +206,20 @@ public class Wine {
 		result = 31 * result + (getBottleSize() != null ? getBottleSize().hashCode() : 0);
 		return result;
 	}
+
+	@Override
+	public String toString() {
+		return "Wine{" +
+				"id=" + id +
+				", colors=" + colors +
+				", name='" + name + '\'' +
+				", berries=" + berries +
+				", alcohol=" + alcohol +
+				", restSugar=" + restSugar +
+				", acid=" + acid +
+				", price=" + price +
+				", bottleSize=" + bottleSize +
+				", isActive=" + isActive +
+				'}';
+	}
 }

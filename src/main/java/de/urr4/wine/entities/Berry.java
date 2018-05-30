@@ -1,5 +1,7 @@
 package de.urr4.wine.entities;
 
+import java.util.Objects;
+
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
@@ -34,5 +36,27 @@ public class Berry {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Berry berry = (Berry) o;
+		return Objects.equals(name, berry.name);
+	}
+
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(name);
+	}
+
+	@Override
+	public String toString() {
+		return "Berry{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				'}';
 	}
 }

@@ -1,6 +1,7 @@
 package de.urr4.wine.entities;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Set;
 
 import org.neo4j.ogm.annotation.GeneratedValue;
@@ -116,5 +117,38 @@ public class Order {
 
 	public void setActive(boolean active) {
 		isActive = active;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Order order = (Order) o;
+		return Double.compare(order.fullPrice, fullPrice) == 0 &&
+				Objects.equals(porto, order.porto) &&
+				Objects.equals(seller, order.seller) &&
+				Objects.equals(wines, order.wines) &&
+				Objects.equals(receivedOn, order.receivedOn) &&
+				Objects.equals(payedOn, order.payedOn);
+	}
+
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(porto, fullPrice, seller, wines, receivedOn, payedOn);
+	}
+
+	@Override
+	public String toString() {
+		return "Order{" +
+				"id=" + id +
+				", porto=" + porto +
+				", fullPrice=" + fullPrice +
+				", seller=" + seller +
+				", wines=" + wines +
+				", receivedOn=" + receivedOn +
+				", payedOn=" + payedOn +
+				", isActive=" + isActive +
+				'}';
 	}
 }

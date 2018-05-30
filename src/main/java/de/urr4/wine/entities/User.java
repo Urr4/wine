@@ -75,6 +75,16 @@ public class User {
 	}
 
 
+	public boolean isActive() {
+		return isActive;
+	}
+
+
+	public void setActive(boolean active) {
+		isActive = active;
+	}
+
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -98,12 +108,13 @@ public class User {
 	}
 
 
-	public boolean isActive() {
-		return isActive;
-	}
-
-
-	public void setActive(boolean active) {
-		isActive = active;
+	@Override
+	public String toString() {
+		return "User{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", likedWines=" + likedWines +
+				", isActive=" + isActive +
+				'}';
 	}
 }

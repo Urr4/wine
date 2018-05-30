@@ -134,4 +134,16 @@ public class Seller {
 		result = 31 * result + (isActive() ? 1 : 0);
 		return result;
 	}
+
+	@Override
+	public String toString() {
+		return "Seller{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", address='" + address + '\'' +
+				", email='" + email + '\'' +
+				", isActive=" + isActive +
+				", wines=" + wines +
+				'}';
+	}
 }

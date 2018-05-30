@@ -1,5 +1,7 @@
 package de.urr4.wine.entities;
 
+import java.util.Objects;
+
 import org.neo4j.ogm.annotation.EndNode;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
@@ -60,5 +62,31 @@ public class OrderedWine {
 
 	public void setWine(Wine wine) {
 		this.wine = wine;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		OrderedWine that = (OrderedWine) o;
+		return amountOfWine == that.amountOfWine &&
+				Objects.equals(order, that.order) &&
+				Objects.equals(wine, that.wine);
+	}
+
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(amountOfWine, order, wine);
+	}
+
+	@Override
+	public String toString() {
+		return "OrderedWine{" +
+				"id=" + id +
+				", amountOfWine=" + amountOfWine +
+				", order=" + order +
+				", wine=" + wine +
+				'}';
 	}
 }
