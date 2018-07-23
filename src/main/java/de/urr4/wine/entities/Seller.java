@@ -26,6 +26,12 @@ public class Seller {
 	@Index(unique = true)
 	private String address;
 
+	@Property(name = "lat")
+	private Double lat;
+
+	@Property(name = "lng")
+	private Double lng;
+
 	@Property(name = "email")
 	@Index(unique = true)
 	private String email;
@@ -107,6 +113,26 @@ public class Seller {
 	}
 
 
+	public Double getLat() {
+		return lat;
+	}
+
+
+	public void setLat(Double lat) {
+		this.lat = lat;
+	}
+
+
+	public Double getLng() {
+		return lng;
+	}
+
+
+	public void setLng(Double lng) {
+		this.lng = lng;
+	}
+
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -134,6 +160,7 @@ public class Seller {
 		result = 31 * result + (isActive() ? 1 : 0);
 		return result;
 	}
+
 
 	@Override
 	public String toString() {
