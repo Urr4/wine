@@ -1,120 +1,37 @@
 package de.urr4.wine.entities;
 
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.neo4j.ogm.annotation.*;
+import org.neo4j.ogm.annotation.typeconversion.Convert;
+import org.neo4j.ogm.id.UuidStrategy;
+import org.neo4j.ogm.typeconversion.UuidStringConverter;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-import org.neo4j.ogm.annotation.GeneratedValue;
-import org.neo4j.ogm.annotation.Id;
-import org.neo4j.ogm.annotation.Index;
-import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Property;
-import org.neo4j.ogm.annotation.Relationship;
-
-
+@Data
+@NoArgsConstructor
 @NodeEntity(label = "User")
 public class User {
 
-	@Id
-	@GeneratedValue
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = UuidStrategy.class)
+    @Convert(UuidStringConverter.class)
+    @Setter(AccessLevel.PRIVATE)
+    private UUID id;
 
-	@Property(name = "name")
-	@Index(unique = true)
-	private String name;
+    @Property(name = "name")
+    @Index(unique = true)
+    private String name;
 
-	@Relationship(type = "LIKES")
-	private List<Wine> likedWines;
+    @Relationship(type = "LIKES")
+    private List<Wine> likedWines = new ArrayList<>();
 
-	@Property(name = "isActive")
-	private boolean isActive = true;
+    @Property(name = "isActive")
+    private boolean isActive = true;
 
-
-	public User() {
-		this.likedWines = new ArrayList<>();
-	}
-
-
-	public Long getId() {
-		return id;
-	}
-
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-
-	public String getName() {
-		return name;
-	}
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-	public List<Wine> getLikedWines() {
-		return likedWines;
-	}
-
-
-	public void setLikedWines(List<Wine> likedWines) {
-		this.likedWines = likedWines;
-	}
-
-
-	public void addLikedWine(Wine likedWine) {
-		this.likedWines.add(likedWine);
-	}
-
-
-	public void removeLikedWine(Wine likedWine) {
-		boolean remove = this.likedWines.remove(likedWine);
-		System.out.println(remove);
-	}
-
-
-	public boolean isActive() {
-		return isActive;
-	}
-
-
-	public void setActive(boolean active) {
-		isActive = active;
-	}
-
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-
-		User user = (User) o;
-
-		if (!getName().equals(user.getName()))
-			return false;
-		return getLikedWines() != null ? getLikedWines().equals(user.getLikedWines()) : user.getLikedWines() == null;
-	}
-
-
-	@Override
-	public int hashCode() {
-		int result = getName().hashCode();
-		result = 31 * result + (getLikedWines() != null ? getLikedWines().hashCode() : 0);
-		return result;
-	}
-
-
-	@Override
-	public String toString() {
-		return "User{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				", likedWines=" + likedWines +
-				", isActive=" + isActive +
-				'}';
-	}
 }
